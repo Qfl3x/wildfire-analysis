@@ -1,16 +1,16 @@
 ## Analysis of 2021 Wildfires in Algeria.
 
-Blog post:
+Blog post: https://qfl3x.github.io/python/gis/2022/05/09/Analyzing-Forest-Fires-in-Northern-Algeria-During-2021-using-NASA-FIRMS-in-Python.html
 
 # Data sources:
 
-NASA FIRMS:
+NASA FIRMS: https://firms.modaps.eosdis.nasa.gov/
 
-Provincial Shapefile:
+Provincial Shapefile: https://data.humdata.org/dataset/cod-ab-dza
 
-NASA Earth Data:
+NASA Earth Data: https://search.earthdata.nasa.gov/search
 
-NASA MODIS: 
+NASA MODIS: https://modis.gsfc.nasa.gov/
 
-World Countries Shapefile:
+World Countries Shapefile: https://www.efrainmaps.es/english-version/free-downloads/world/
 
