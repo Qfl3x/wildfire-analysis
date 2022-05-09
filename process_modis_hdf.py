@@ -13,11 +13,13 @@ hdf_list = list(filter(lambda x: x[-3:] == 'hdf', file_list))
 firemask_gdf = gpd.GeoDataFrame({'DN':[],'geometry':[],'date':[]}, geometry='geometry')
 maxfrp_gdf = gpd.GeoDataFrame({'DN':[],'geometry':[],'date':[]}, geometry='geometry')
 
-countries_gdf = gpd.read_file('World_Countries.shp')
+countries_gdf = gpd.read_file('World_Countries.shp') #World countries shapefile from https://www.efrainmaps.es/english-version/free-downloads/world/
 countries_gdf = countries_gdf.to_crs(3857)
 algeria_poly = countries_gdf.loc[3, 'geometry']
 
-cleanshpcom = f"rm polygon*"
+cleanshpcom = f"rm polygon*" #Command for cleaning the output of gdal_polygonize once we're done with it.
+
+#Loop through FireMask SDS
 for file in hdf_list:
     year = int(re.search(r"MOD14A1.A(\d\d\d\d)(\d\d\d)*", file).group(1))
     days = int(re.search(r"MOD14A1.A(\d\d\d\d)(\d\d\d)*", file).group(2))
@@ -33,10 +35,11 @@ for file in hdf_list:
         gdf = gpd.read_file('polygon.shp', geometry = 'geometry')
         
         gdf['date'] = date
-        gdf = gdf.loc[gdf.within(algeria_poly)]
+        gdf = gdf.loc[gdf.within(algeria_poly)] #Ensure Data points are within Algeria
         firemask_gdf = pd.concat([firemask_gdf, gdf], ignore_index=True)
         os.system(cleanshpcom)
         
+#Loop through MaxFRP SDS
 for file in hdf_list:
     year = int(re.search(r"VNP14A1.A(\d\d\d\d)(\d\d\d)*", file).group(1))
     days = int(re.search(r"VNP14A1.A(\d\d\d\d)(\d\d\d)*", file).group(2))
